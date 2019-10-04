@@ -1,0 +1,15 @@
+#include <iostream>
+#include "../hooks.h"
+#include "egl_display.h"
+
+using namespace std;
+
+int main(){
+    android::egl_display_t *t = new android::egl_display_t;
+    cout<<t->initialize((EGLint *)1,(EGLint *)4)<<endl;
+     EGLDisplay d = (EGLDisplay)t->getDisplay((EGLNativeDisplayType)0);
+     cout<<d<<endl;
+     cout<<android::validate_display(d)<<endl;
+     delete t;
+     return 0;
+}
