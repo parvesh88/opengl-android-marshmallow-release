@@ -1,7 +1,0 @@
-gcc -flto-jobs=4 -mcpu=cortex-a7 -Wl,--build-id=md5 -o egl -O2 -fno-exceptions -fno-rtti -s -I../include -I../ -lcutils -lutils -llog -lc++ -DLOG_TAG=\"libEGL\"  -DGL_GLEXT_PROTOTYPES -DEGL_EGLEXT_PROTOTYPES -DEGL_TRACE=1 -lGLES_trace -DHAVE_ANDROID_OS -lstdc++ -lm -fPIC *.cpp libatomic.a
-cp egl $HOME
-cd $HOME
-chmod +x egl
-./egl
-rm egl
-cd $OLDPWD
