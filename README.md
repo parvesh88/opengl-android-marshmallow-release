@@ -1,6 +1,8 @@
 
 OpenGL EGL DRIVER FOR ANDROID MARSHMALLOW RELEASE
 
+To get better OpenGL ES features than Official Release
+
 Usage :
 
 1. Pull Repository.
