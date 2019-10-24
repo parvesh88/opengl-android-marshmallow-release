@@ -9,4 +9,6 @@ Usage:
 3. run command 'sh opengl-*/build.sh' from Terminal.
 4. Check build directory.
 
+Note:- These libraries are supported with ARM Mali 400 GPU.
+
 Enjoy! 
