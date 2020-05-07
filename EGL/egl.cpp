@@ -238,9 +238,11 @@ static void early_egl_init(void)
     pthread_key_create(&gGLTraceKey, NULL);
     initEglTraceLevel();
 #endif
-    int numHooks = sizeof(gHooksNoContext) / sizeof(EGLFuncPointer);
-	//printf("Hooks : %d\n",numHooks);
+    
     EGLFuncPointer *iter = reinterpret_cast<EGLFuncPointer*>(&gHooksNoContext);
+    
+    int numHooks = sizeof(gHooksNoContext) / sizeof(EGLFuncPointer);
+    
     for (int hook = 0; hook < numHooks; ++hook) {
         *(iter++) = reinterpret_cast<EGLFuncPointer>(gl_no_context);
     }
@@ -267,11 +269,15 @@ egl_display_ptr validate_display(EGLDisplay dpy) {
 
 egl_display_ptr validate_display_connection(EGLDisplay dpy,
         egl_connection_t*& cnx) {
-    cnx = NULL;
+
     egl_display_ptr dp = validate_display(dpy);
+    
     if (!dp)
         return dp;
-    cnx = &gEGLImpl;
+        
+    if(cnx == NULL)
+        cnx = &gEGLImpl;
+        
     if (cnx->dso == 0) {
         return setError(EGL_BAD_CONFIG, egl_display_ptr(NULL));
     }
