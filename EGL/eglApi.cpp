@@ -53,6 +53,8 @@ using namespace android;
 // Implementation is incomplete and untested.
 #define ENABLE_EGL_KHR_GL_COLORSPACE 1
 
+#define LOG_NDEBUG 1
+
 // ----------------------------------------------------------------------------
 
 namespace android {

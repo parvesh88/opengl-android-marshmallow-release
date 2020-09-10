@@ -234,7 +234,7 @@ void Loader::init_api(void* dso,
                 strncpy(scrap, name, index);
                 scrap[index] = 0;
                 f = (__eglMustCastToProperFunctionPointerType)dlsym(dso, scrap);
-                //ALOGD_IF(f, "found <%s> instead", scrap);
+                ALOGD_IF(f, "found <%s> instead", scrap);
             }
         }
         if (f == NULL) {
@@ -243,11 +243,11 @@ void Loader::init_api(void* dso,
             if (index>0 && strcmp(name+index, "OES")) {
                 snprintf(scrap, SIZE, "%sOES", name);
                 f = (__eglMustCastToProperFunctionPointerType)dlsym(dso, scrap);
-                //ALOGD_IF(f, "found <%s> instead", scrap);
+                ALOGD_IF(f, "found <%s> instead", scrap);
             }
         }
         if (f == NULL) {
-            //ALOGD("%s", name);
+            ALOGD("%s", name);
             f = (__eglMustCastToProperFunctionPointerType)gl_unimplemented;
 
             /*

@@ -36,19 +36,13 @@
 namespace android {
 // ----------------------------------------------------------------------------
 
+/**
 struct GLenumString {
     // The GL_TIMEOUT_IGNORED "enum" doesn't fit in a GLenum, so use GLuint64
     GLuint64 e;
     const char* s;
 };
-
-#undef GL_ENUM
-#define GL_ENUM(VAL,NAME) {VAL, #NAME},
-
-static GLenumString g_enumnames[] = {
-#include "enums.in"
-};
-#undef GL_ENUM
+*/
 
 static int compareGLEnum(const void* a, const void* b) {
     return ((const GLenumString*) a)->e - ((const GLenumString*) b)->e;

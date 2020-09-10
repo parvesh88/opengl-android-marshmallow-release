@@ -70,8 +70,33 @@ struct gl_hooks_t {
         __eglMustCastToProperFunctionPointerType extensions[MAX_NUMBER_OF_GL_EXTENSIONS];
     } ext;
 };
+
+
 #undef GL_ENTRY
 #undef EGL_ENTRY
+
+struct GLenumString {
+    // The GL_TIMEOUT_IGNORED "enum" doesn't fit in a GLenum, so use GLuint64
+    GLuint64 e;
+    const char* s;
+};
+
+#undef GL_ENUM
+#define GL_ENUM(VAL,NAME) {VAL, #NAME},
+
+#undef EGL_ENUM
+#define EGL_ENUM(VAL,NAME) {VAL, #NAME},
+
+static GLenumString g_enumnames[] = { 
+     #ifdef EGL_TRACE
+     #include "egl_enums.in" 
+     #endif
+     
+     #include "enums.in"
+};
+
+#undef GL_ENUM
+#undef EGL_ENUM
 
 EGLAPI void setGlThreadSpecific(gl_hooks_t const *value);
 
