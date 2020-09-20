@@ -31,9 +31,15 @@ void API_ENTRY(glMultiTexCoord3bOES)(GLenum texture, GLbyte s, GLbyte t, GLbyte 
 void API_ENTRY(glMultiTexCoord3bvOES)(GLenum texture, const GLbyte * coords) {
     CALL_GL_API(glMultiTexCoord3bvOES, texture, coords);
 }
+/*
 void API_ENTRY(glMultiTexCoord4bOES)(GLenum texture, GLbyte s, GLbyte t, GLbyte r, GLbyte q) {
     CALL_GL_API(glMultiTexCoord4bOES, texture, s, t, r, q);
+} 
+
+void API_ENTRY(glMultiTexCoord4b)(GLenum texture, GLbyte s, GLbyte t, GLbyte r, GLbyte q) {
+    CALL_GL_API(glMultiTexCoord4b, texture, s, t, r, q);
 }
+*/
 void API_ENTRY(glMultiTexCoord4bvOES)(GLenum texture, const GLbyte * coords) {
     CALL_GL_API(glMultiTexCoord4bvOES, texture, coords);
 }

@@ -35,6 +35,16 @@ using namespace android;
 // extensions for the framework
 // ----------------------------------------------------------------------------
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+GL_API void GL_APIENTRY glMultiTexCoord4b(GLenum target, GLbyte s, GLbyte t, GLbyte r, GLbyte q);
+
+#ifdef __cplusplus
+}
+#endif
+
 extern "C" {
 GL_API void GL_APIENTRY glColorPointerBounds(GLint size, GLenum type, GLsizei stride,
         const GLvoid *ptr, GLsizei count);
@@ -84,6 +94,13 @@ GL_API void GL_APIENTRY glWeightPointerOESBounds(GLint size, GLenum type,
     glWeightPointerOES(size, type, stride, pointer);
 }
 
+GL_API void GL_APIENTRY glMultiTexCoord4b(GLenum texture, GLbyte s, GLbyte t, GLbyte r, GLbyte q) {
+      glMultiTexCoord4b(texture, s, t, r, q);
+   }
+
+GL_API void GL_APIENTRY glMultiTexCoord4bOES(GLenum texture, GLbyte s, GLbyte t, GLbyte r, GLbyte q) {
+      glMultiTexCoord4b(texture, s, t, r, q);
+   }
 // ----------------------------------------------------------------------------
 // Actual GL entry-points
 // ----------------------------------------------------------------------------
