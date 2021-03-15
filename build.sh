@@ -1,3 +1,5 @@
+mkdir build
+
 cd EGL
 sh build.sh
 mv libEGL.so ../build

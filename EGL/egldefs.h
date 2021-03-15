@@ -71,3 +71,4 @@ extern egl_connection_t gEGLImpl;
 // ----------------------------------------------------------------------------
 
 #endif /* ANDROID_EGLDEFS_H */
+

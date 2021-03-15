@@ -1229,9 +1229,19 @@ EGLBoolean eglSwapBuffersWithDamageKHR(EGLDisplay dpy, EGLSurface draw,
     if (s->cnx->egl.eglSwapBuffersWithDamageKHR) {
         return s->cnx->egl.eglSwapBuffersWithDamageKHR(dp->disp.dpy, s->surface,
                 rects, n_rects);
-    } else {
+    } else if(s->cnx->egl.eglSwapBuffersWithDamageEXT) {
+        return s->cnx->egl.eglSwapBuffersWithDamageEXT(dp->disp.dpy, s->surface,
+                rects, n_rects);
+    }
+    else {
         return s->cnx->egl.eglSwapBuffers(dp->disp.dpy, s->surface);
     }
+}
+
+EGLBoolean eglSwapBuffersWithDamageEXT(EGLDisplay dpy, EGLSurface draw,
+        EGLint *rects, EGLint n_rects)
+{
+    return eglSwapBuffersWithDamageKHR(dpy, draw, rects, n_rects);
 }
 
 EGLBoolean eglSwapBuffers(EGLDisplay dpy, EGLSurface surface)
