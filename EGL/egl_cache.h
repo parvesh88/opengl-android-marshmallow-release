@@ -64,12 +64,10 @@ public:
     // setCacheFilename sets the name of the file that should be used to store
     // cache contents from one program invocation to another.
     void setCacheFilename(const char* filename);
-
-private:
-    // Creation and (the lack of) destruction is handled internally.
+   
     egl_cache_t();
     ~egl_cache_t();
-
+private:
     // Copying is disallowed.
     egl_cache_t(const egl_cache_t&); // not implemented
     void operator=(const egl_cache_t&); // not implemented

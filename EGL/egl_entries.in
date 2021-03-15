@@ -96,3 +96,5 @@ EGL_ENTRY(EGLBoolean, eglAwakenProcessIMG, void)
 EGL_ENTRY(EGLBoolean, eglSwapBuffersWithDamageKHR, EGLDisplay, EGLSurface, EGLint *, EGLint)
 EGL_ENTRY(EGLBoolean, eglSwapBuffersWithDamageEXT, EGLDisplay, EGLSurface, EGLint *, EGLint)
 EGL_ENTRY(EGLBoolean, eglSetDamageRegionKHR, EGLDisplay, EGLSurface, EGLint *, EGLint)
+
+EGL_ENTRY(void,eglSetBlobCacheFuncsANDROID, EGLDisplay dpy, EGLSetBlobFuncANDROID set, EGLGetBlobFuncANDROID get)

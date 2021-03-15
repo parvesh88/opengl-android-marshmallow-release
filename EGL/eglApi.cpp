@@ -46,6 +46,7 @@
 #include "egl_object.h"
 #include "egl_tls.h"
 #include "egldefs.h"
+#include "egl_cache.h"
 
 using namespace android;
 
@@ -1983,4 +1984,15 @@ EGLBoolean eglSetDamageRegionKHR(EGLDisplay dpy, EGLSurface surface,
     }
 
     return EGL_FALSE;
+}
+
+//blob
+
+void eglSetBlobCacheFuncsANDROID(EGLDisplay dpy, EGLSetBlobFuncANDROID set, EGLGetBlobFuncANDROID get){
+      egl_cache_t _c;
+      _c.terminate();
+      const egl_display_ptr dp = validate_display(dpy);
+      egl_connection_t* const cnx = &gEGLImpl;
+      if(cnx->dso && cnx->egl.eglSetBlobCacheFuncsANDROID)
+        cnx->egl.eglSetBlobCacheFuncsANDROID(dp->disp.dpy,set,get);
 }
