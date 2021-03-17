@@ -244,18 +244,6 @@ static const extention_map_t sExtensionMap[] = {
 {"eglWaitSyncKHR",(__eglMustCastToProperFunctionPointerType)&eglWaitSyncKHR}
 };
 
-/*
- * These extensions entry-points should not be exposed to applications.
- * They're used internally by the Android EGL layer.
- */
-#define FILTER_EXTENSIONS(procname) \
-        (!strcmp((procname), "eglSetBlobCacheFuncsANDROID") ||    \
-         !strcmp((procname), "eglHibernateProcessIMG")      ||    \
-         !strcmp((procname), "eglAwakenProcessIMG")         ||    \
-         !strcmp((procname), "eglDupNativeFenceFDANDROID"))
-
-
-
 // accesses protected by sExtensionMapMutex
 static DefaultKeyedVector<String8, __eglMustCastToProperFunctionPointerType> sGLExtentionMap;
 static int sGLExtentionSlot = 0;
@@ -1011,12 +999,7 @@ __eglMustCastToProperFunctionPointerType eglGetProcAddress(const char *procname)
         setError(EGL_BAD_PARAMETER, NULL);
         return  NULL;
     }
-
-    if (FILTER_EXTENSIONS(procname)) {
-        return NULL;
-    }
-
-    __eglMustCastToProperFunctionPointerType addr;
+ __eglMustCastToProperFunctionPointerType addr;
     addr = findProcAddress(procname, sExtensionMap, NELEM(sExtensionMap));
     if (addr) return addr;
 
@@ -1988,11 +1971,14 @@ EGLBoolean eglSetDamageRegionKHR(EGLDisplay dpy, EGLSurface surface,
 
 //blob
 
+egl_cache_t _c;
+
 void eglSetBlobCacheFuncsANDROID(EGLDisplay dpy, EGLSetBlobFuncANDROID set, EGLGetBlobFuncANDROID get){
-      egl_cache_t _c;
-      _c.terminate();
       const egl_display_ptr dp = validate_display(dpy);
       egl_connection_t* const cnx = &gEGLImpl;
-      if(cnx->dso && cnx->egl.eglSetBlobCacheFuncsANDROID)
+      if(dp && cnx->dso && cnx->egl.eglSetBlobCacheFuncsANDROID){
+        _c.terminate();
         cnx->egl.eglSetBlobCacheFuncsANDROID(dp->disp.dpy,set,get);
+       }
+       ALOGI("eglSetBlobCacheFuncsANDROID function called");
 }

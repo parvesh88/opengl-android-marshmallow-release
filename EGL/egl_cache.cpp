@@ -122,12 +122,14 @@ void egl_cache_t::initialize(egl_display_t *display) {
     }
 
     mInitialized = true;
+    ALOGI("Blob Cache Initialized");
 }
 
 void egl_cache_t::terminate() {
     Mutex::Autolock lock(mMutex);
     saveBlobCacheLocked();
     mBlobCache = NULL;
+    ALOGI("Blob Cache Terminated");
 }
 
 void egl_cache_t::setBlob(const void* key, EGLsizeiANDROID keySize,

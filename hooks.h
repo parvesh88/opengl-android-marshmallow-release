@@ -88,11 +88,18 @@ struct GLenumString {
 #define EGL_ENUM(VAL,NAME) {VAL, #NAME},
 
 static GLenumString g_enumnames[] = { 
-     #ifdef EGL_TRACE
-     #include "egl_enums.in" 
+     #ifdef EGL_ENUMS
+     #include "enums_egl.in" 
      #endif
      
-     #include "enums.in"
+     #ifdef GL_ENUMS
+     #include "enums_gl.in"
+     #endif
+     
+     #ifdef GL2_ENUMS
+     #include "enums_gl.in"
+     #include "enums_gl2.in"
+     #endif
 };
 
 #undef GL_ENUM

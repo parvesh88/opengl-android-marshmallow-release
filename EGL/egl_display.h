@@ -146,6 +146,7 @@ private:
     // The owning egl_display_t's lock may be but is not required to be held
     // when calling HibernationMachine methods. As a result, nothing in this
     // class may call back up to egl_display_t directly or indirectly.
+public:
     class HibernationMachine {
     public:
         // STRONG refs cancel (inc) or initiate (dec) a hibernation attempt
